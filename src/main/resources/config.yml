@@ -1,0 +1,25 @@
+# Placeholders:
+#  %material% - The material held
+#  %categories% - The categories the material is in
+
+# language: Language Options
+language:
+  # message-format: The format of the '/categories' message
+  message-format: "&b%material% &7is in the following categories: &6%categories%"
+  # message-format: If the item you're holding is not in a category
+  no-category: "&b%material &7is not in any categories"
+  # no-item: Reply for if you're not holding an item
+  no-item: "&cYou are not holding an item"
+  # reload: Sent when the plugin is successfully reloaded
+  reload: "&aItemCategories has been reloaded"
+
+# categories: The categories available when '/categories' is ran
+categories:
+  # categoryName: A category with a list of items in (Items can be in multiple categories)
+  wool:
+    - "RED_WOOL"
+    - "LIME_WOOL"
+    - "GREEN_WOOL"
+
+  potato:
+    - "POTATO"

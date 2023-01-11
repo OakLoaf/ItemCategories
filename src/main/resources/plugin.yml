@@ -1,0 +1,10 @@
+name: ItemCategories
+version: '${project.version}'
+main: me.dave.itemcategories.ItemCategories
+api-version: 1.19
+authors: [ Dav_e_ ]
+description: Create and check categories for items
+commands:
+  categories:
+    description: The main ItemCategories Command.
+    usage: /categories
