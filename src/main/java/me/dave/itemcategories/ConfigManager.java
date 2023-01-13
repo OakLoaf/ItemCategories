@@ -39,7 +39,7 @@ public class ConfigManager {
     }
 
     public String getNoCategoryMessage(Material material) {
-        return config.getString("language.no-category", "§b%material% §7is not in any categories").replaceAll("%material%", material.name());
+        return config.getString("language.no-category", "&b%material% §7is not in any categories").replaceAll("%material%", material.name());
     }
 
     public String getNoItemMessage() {

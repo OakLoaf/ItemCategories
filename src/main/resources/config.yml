@@ -7,7 +7,7 @@ language:
   # message-format: The format of the '/categories' message
   message-format: "&b%material% &7is in the following categories: &6%categories%"
   # message-format: If the item you're holding is not in a category
-  no-category: "&b%material &7is not in any categories"
+  no-category: "&b%material% &7is not in any categories"
   # no-item: If you're not holding an item
   no-item: "&cYou are not holding an item"
   # reload: Sent when the plugin is successfully reloaded
