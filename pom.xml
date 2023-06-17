@@ -15,7 +15,7 @@
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dir>${env.PLUGINFOLDER}</dir>
+        <dir>${env.PLUGINFOLDER_1-20}</dir>
     </properties>
 
     <build>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>com.github.CoolDCB</groupId>
             <artifactId>ChatColorHandler</artifactId>
-            <version>v0.9.5</version>
+            <version>v1.2.5</version>
         </dependency>
     </dependencies>
 </project>
