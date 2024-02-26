@@ -1,6 +1,6 @@
-package me.dave.itemcategories;
+package me.dave.itemcategories.config;
 
-import org.bukkit.ChatColor;
+import me.dave.itemcategories.ItemCategories;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -8,9 +8,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.*;
 
 public class ConfigManager {
-    private FileConfiguration config;
     private final ItemCategories plugin = ItemCategories.getInstance();
     private final HashMap<String, List<Material>> categoryMap = new HashMap<>();
+    private final HashMap<String, String> messages = new HashMap<>();
 
     public ConfigManager() {
         plugin.saveDefaultConfig();
@@ -19,8 +19,10 @@ public class ConfigManager {
 
     public void reloadConfig() {
         plugin.reloadConfig();
-        config = plugin.getConfig();
+        FileConfiguration config = plugin.getConfig();
+
         categoryMap.clear();
+        messages.clear();
 
         ConfigurationSection categoriesSection = config.getConfigurationSection("categories");
         if (categoriesSection != null) {
@@ -32,22 +34,25 @@ public class ConfigManager {
                 categoryMap.put(categoryName, materials);
             }
         }
+
+        ConfigurationSection messagesSection = config.getConfigurationSection("language");
+        if (messagesSection != null) {
+            messagesSection.getValues(false).forEach((name, message) -> messages.put(name, (String) message));
+        }
     }
 
-    public String getCategoriesMessage(Material material, List<String> categories) {
-        return config.getString("language.message-format", "&b%material% &7is in the following categories: &6%categories%").replaceAll("%material%", material.name()).replaceAll("%categories%", categories.toString());
+    public String getMessage(String name, LocalPlaceholder... placeholders) {
+        return getMessage(name, null, placeholders);
     }
 
-    public String getNoCategoryMessage(Material material) {
-        return config.getString("language.no-category", "&b%material% §7is not in any categories").replaceAll("%material%", material.name());
-    }
+    public String getMessage(String name, String def, LocalPlaceholder... placeholders) {
+        String message = messages.getOrDefault(name, def);
 
-    public String getNoItemMessage() {
-        return config.getString("language.no-item", "&cYou are not holding an item");
-    }
+        for (LocalPlaceholder placeholder : placeholders) {
+            message = message.replace(placeholder.placeholder(), placeholder.content());
+        }
 
-    public String getReloadMessage() {
-        return config.getString("language.reload", "&aItemCategories has been reloaded");
+        return messages.get(name);
     }
 
     public List<String> getMaterialCategories(Material material) {
@@ -59,5 +64,7 @@ public class ConfigManager {
         }
         return categoriesIn;
     }
+
+    public record LocalPlaceholder(String placeholder, String content) {}
 }
 
