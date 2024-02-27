@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot:1.20.1-R0.1-SNAPSHOT")
-    implementation("me.dave:PlatyUtils:0.1.0.44")
+    implementation("me.dave:PlatyUtils:0.1.0.45")
 }
 
 java {
