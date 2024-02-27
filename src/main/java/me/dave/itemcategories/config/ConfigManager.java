@@ -1,6 +1,7 @@
 package me.dave.itemcategories.config;
 
 import me.dave.itemcategories.ItemCategories;
+import me.dave.itemcategories.util.SimplePlaceholder;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,15 +42,15 @@ public class ConfigManager {
         }
     }
 
-    public String getMessage(String name, LocalPlaceholder... placeholders) {
+    public String getMessage(String name, SimplePlaceholder... placeholders) {
         return getMessage(name, null, placeholders);
     }
 
-    public String getMessage(String name, String def, LocalPlaceholder... placeholders) {
+    public String getMessage(String name, String def, SimplePlaceholder... placeholders) {
         String message = messages.getOrDefault(name, def);
 
-        for (LocalPlaceholder placeholder : placeholders) {
-            message = message.replace(placeholder.placeholder(), placeholder.content());
+        for (SimplePlaceholder placeholder : placeholders) {
+            message = placeholder.parse(message);
         }
 
         return messages.get(name);
@@ -64,7 +65,5 @@ public class ConfigManager {
         }
         return categoriesIn;
     }
-
-    public record LocalPlaceholder(String placeholder, String content) {}
 }
 

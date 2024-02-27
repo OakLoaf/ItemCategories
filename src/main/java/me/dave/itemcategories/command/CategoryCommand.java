@@ -1,7 +1,7 @@
 package me.dave.itemcategories.command;
 
 import me.dave.itemcategories.ItemCategories;
-import me.dave.itemcategories.config.ConfigManager;
+import me.dave.itemcategories.util.SimplePlaceholder;
 import me.dave.platyutils.command.Command;
 import me.dave.platyutils.command.SubCommand;
 import me.dave.platyutils.libraries.chatcolor.ChatColorHandler;
@@ -55,11 +55,11 @@ public class CategoryCommand extends Command {
 
         List<String> categories = ItemCategories.getInstance().getConfigManager().getMaterialCategories(material);
         if (categories.size() == 0) {
-            ChatColorHandler.sendMessage(sender, ItemCategories.getInstance().getConfigManager().getMessage("no-category", "&b%material% §7is not in any categories", new ConfigManager.LocalPlaceholder("%material%", material.name())));
+            ChatColorHandler.sendMessage(sender, ItemCategories.getInstance().getConfigManager().getMessage("no-category", "&b%material% §7is not in any categories", new SimplePlaceholder("%material%", material.name())));
             return  true;
         }
 
-        ChatColorHandler.sendMessage(sender, ItemCategories.getInstance().getConfigManager().getMessage("message-format", "&b%material% &7is in the following categories: &6%categories%", new ConfigManager.LocalPlaceholder("%material%", material.name()), new ConfigManager.LocalPlaceholder("%categories%", categories.toString())));
+        ChatColorHandler.sendMessage(sender, ItemCategories.getInstance().getConfigManager().getMessage("message-format", "&b%material% &7is in the following categories: &6%categories%", new SimplePlaceholder("%material%", material.name()), new SimplePlaceholder("%categories%", categories.toString())));
         return true;
     }
 
