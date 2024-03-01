@@ -53,7 +53,7 @@ public class ConfigManager {
             message = placeholder.parse(message);
         }
 
-        return messages.get(name);
+        return message;
     }
 
     public List<String> getMaterialCategories(Material material) {
